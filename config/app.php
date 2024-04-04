@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Intervention\Image\Facades\Image;
+
 
 return [
 
@@ -83,7 +85,12 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'uz',
+
+    'all_locales' =>[
+        'uz',
+        'en',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +103,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'uz',
 
     /*
     |--------------------------------------------------------------------------
@@ -186,6 +193,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+
     ])->toArray(),
 
 ];

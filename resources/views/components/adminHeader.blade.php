@@ -29,7 +29,7 @@
                 <a href="{{ route('users.index')}}" class="nav-item nav-link"><i class="fa-solid fa-user"></i> Users</a>
                 <a href="{{ route('products.index')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Products</a>
                 <a href="{{ route('categories.index')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Categories</a>
-                <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Orders</a>
+                <a href="{{ route('orders.index')}}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Orders</a>
                 
                 
             </div>

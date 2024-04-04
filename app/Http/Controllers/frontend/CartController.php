@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\frontend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class CartController extends Controller
     {
 
         $cartContent = Cart::content();
-        $total  = Cart::total();
+        $total  = Cart::subtotal();
         return view('frontend.cart', compact('cartContent', 'total'));
     }
 

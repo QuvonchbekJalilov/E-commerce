@@ -1,22 +1,29 @@
-        <!-- Start Footer -->
+<?php
+
+use App\Models\Category;
+
+$categories = Category::all();
+
+?>
+<!-- Start Footer -->
         <footer class="bg-dark" id="tempaltemo_footer">
             <div class="container">
                 <div class="row">
 
                     <div class="col-md-4 pt-5">
-                        <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                        <h2 class="h2 text-success border-bottom pb-3 border-light logo">JKShop</h2>
                         <ul class="list-unstyled text-light footer-link-list">
                             <li>
                                 <i class="fas fa-map-marker-alt fa-fw"></i>
-                                123 Consectetur at ligula 10660
+                                MDIST
                             </li>
                             <li>
                                 <i class="fa fa-phone fa-fw"></i>
-                                <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                                <a class="text-decoration-none" href="tel:935889114">+998 93 588-91-14</a>
                             </li>
                             <li>
                                 <i class="fa fa-envelope fa-fw"></i>
-                                <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                                <a class="text-decoration-none" href="mailto:info@company.com">infjalilovquvonchbek@company.com</a>
                             </li>
                         </ul>
                     </div>
@@ -24,24 +31,20 @@
                     <div class="col-md-4 pt-5">
                         <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                         <ul class="list-unstyled text-light footer-link-list">
-                            <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                            <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                            <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                            <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                            <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                            <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                            <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                            @foreach ($categories as  $category)
+                            <li><a class="text-decoration-none" href="{{ route('category', ['category'=> $category->id])}}">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
 
                     <div class="col-md-4 pt-5">
                         <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                         <ul class="list-unstyled text-light footer-link-list">
-                            <li><a class="text-decoration-none" href="#">Home</a></li>
-                            <li><a class="text-decoration-none" href="#">About Us</a></li>
-                            <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                            <li><a class="text-decoration-none" href="\">Home</a></li>
+                            <li><a class="text-decoration-none" href="{{ route('about')}}">About Us</a></li>
+                            <li><a class="text-decoration-none" href="{{ route('shop')}}">Shop</a></li>
                             <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                            <li><a class="text-decoration-none" href="#">Contact</a></li>
+                            <li><a class="text-decoration-none" href="{{ route('contact')}}">Contact</a></li>
                         </ul>
                     </div>
 
@@ -54,16 +57,13 @@
                     <div class="col-auto me-auto">
                         <ul class="list-inline text-left footer-icons">
                             <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/_quvonchbek_jalilov"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="https://t.me/Jalilov_Quvonchbek"><i class="fa-brands fa-telegram fa-fw"></i></a>
                             </li>
                             <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
-                            </li>
-                            <li class="list-inline-item border border-light rounded-circle text-center">
-                                <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                                <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/in/quvonchbek-jalilov-4a5a61273"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -82,8 +82,8 @@
                     <div class="row pt-2">
                         <div class="col-12">
                             <p class="text-left text-light">
-                                Copyright &copy; 2021 Company Name
-                                | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                                Copyright &copy; 2024 JKshop
+                                | Designed by Jalilov Quvonchbek
                             </p>
                         </div>
                     </div>

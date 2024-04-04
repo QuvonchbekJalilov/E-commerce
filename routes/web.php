@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\admin\AuthController as AdminAuthController;
-use App\Http\Controllers\admin\PageController as AdminPageController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CartController;
+use \App\Http\Controllers\frontend\CartController;
+use App\Http\Controllers\frontend\LanguageController;
 use App\Http\Controllers\frontend\PageController;
 use App\Http\Controllers\frontend\ProductController;
-use App\Http\Livewire\ProductSearch;
+use App\Http\Controllers\frontend\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +41,12 @@ Route::get('/cart', [CartController::class, 'viewCart'])->name('viewCart');
 Route::delete('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('deleteCartItem');
 Route::post('/update-cart-item', [CartController::class, 'updateCartItem'])->name('updateCartItem');
 
+Route::post('placeOrder', [OrderController::class, 'makeOrder'])->name('makeOrder');
+
+Route::get('/myOrder', [OrderController::class, 'myOrder'])->name('myOrder');
+
+Route::get('category/{category}',[PageController::class, 'category'])->name('category');
+
+Route::post('contactMe',[PageController::class, 'contactMe'])->name('contactMe');
+
+Route::get('language/{locale}',[LanguageController::class, 'language'])->name('locale.change');

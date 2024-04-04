@@ -11,6 +11,10 @@ use App\Models\Specification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
+
+
+
 class ProductController extends Controller
 {
 
@@ -71,7 +75,6 @@ class ProductController extends Controller
         }
 
 
-
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
                 $photoPath = $photo->store('product_photos');
@@ -118,7 +121,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
         ]);
-    
+
         // Update the product details
         $product->update([
             'name' => $validatedData['name'],
@@ -127,16 +130,16 @@ class ProductController extends Controller
             'price' => $validatedData['price'],
             'stock' => $validatedData['stock'],
         ]);
-    
+
         // Delete existing specifications related to the product
         $product->specifications()->delete();
-    
+
         // Retrieve specifications from the request
         $specifications = $request->input('specifications', []);
-    
+
         // Initialize an array to store combined specifications
         $combinedSpecifications = [];
-    
+
         // Iterate over the specifications array
         for ($i = 0; $i < count($specifications); $i += 2) {
             // Check if both attribute_name and attribute_value are present
@@ -148,7 +151,7 @@ class ProductController extends Controller
                 ];
             }
         }
-    
+
         // Create Specification models for each combined specification
         foreach ($combinedSpecifications as $spec) {
             Specification::create([
@@ -157,7 +160,7 @@ class ProductController extends Controller
                 'attribute_value' => $spec['attribute_value']
             ]);
         }
-    
+
         // Handle product photos
         if ($request->hasFile('photos')) {
             foreach ($product->photos as $photo) {
@@ -173,11 +176,11 @@ class ProductController extends Controller
                 ]);
             }
         }
-    
+
         // Redirect back to the product index page with a success message
         return redirect()->route('products.index')->with('success', 'Product updated successfully');
     }
-    
+
 
 
 

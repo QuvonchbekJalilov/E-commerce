@@ -15,25 +15,29 @@
             </form>
         </div>
     </div>
-
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success')}}
+    </div>
+    @endif
 
     <!-- Start Content Page -->
     <div class="container-fluid bg-light py-5">
         <div class="col-md-6 m-auto text-center">
             <h1 class="h1">Contact Us</h1>
             <p>
-                Proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet.
+                if you have some questions, please contact us!
             </p>
         </div>
     </div>
 
-    
+
 
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
+            <form class="col-md-9 m-auto" method="POST" action="{{ route('contactMe')}}">
+                @csrf
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">Name</label>

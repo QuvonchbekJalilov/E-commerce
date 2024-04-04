@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+
 ?>
 
 <x-layouts.main>
@@ -13,7 +14,7 @@ use App\Models\Product;
         <?php
         $product = Product::findOrFail($item->id);
         ?>
-        
+
         <div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-3">
@@ -24,32 +25,48 @@ use App\Models\Product;
                         <h5 class="card-title">{{ $item->name }}</h5>
                         <p class="card-text">Price: {{ $item->price }}</p>
                         <div class="input-group mb-3">
-                        <form action="{{ route('updateCartItem') }}" method="POST">
-                            @csrf
-                            <input type="hidden" name="rowId" value="{{ $item->rowId }}">
-                            <button class="btn btn-outline-secondary" type="submit" name="action" value="decrement">-</button>
-                            <input type="text" class="form-control" value="{{ $item->qty }}" readonly>
-                            <button class="btn btn-outline-secondary" type="submit" name="action" value="increment">+</button>
-                        </form>
+                            <form action="{{ route('updateCartItem') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+                                <button class="btn btn-outline-secondary" type="submit" name="action" value="decrement">-</button>
+                                <input type="text" id="quantity_{{ $item->id }}" class="form-control" value="{{ $item->qty }}" readonly>
+                                <button class="btn btn-outline-secondary" type="submit" name="action" value="increment">+</button>
+                            </form>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card-body">
-                    <form action="{{ route('deleteCartItem') }}" method="POST">
+                        <form action="{{ route('deleteCartItem') }}" method="POST">
                             @csrf
                             @method("DELETE")
                             <input type="hidden" name="rowId" value="{{ $item->rowId }}">
-                            <button type="submit" class="btn btn-square btn-outline-danger m-2"><i class="fa-solid fa-trash"></i></button>                        
+                            <button type="submit" class="btn btn-square btn-outline-danger m-2"><i class="fa-solid fa-trash"></i></button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
-        @endif
 
-        <p>{{ $total }}</p>
+        <div class="container">
+            <h3>Total Sum: ${{ $total }}</h3>
+            <form action="{{ route('makeOrder') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="phone_number" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phone_number" name="phone_number">
+                </div>
+                <!-- Add hidden fields to send product IDs and quantities -->
+                @foreach ($cartContent as $item)
+                <input type="hidden" name="product_ids[]" value="{{ $item->id }}">
+                <input type="hidden" name="quantities[]" value="{{ $item->qty }}">
+                @endforeach
+                <input type="hidden" name="total" value="{{ $total }}">
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+        @endif
     </div>
 </x-layouts.main>
 
@@ -78,6 +95,4 @@ use App\Models\Product;
                 console.error(error);
             });
     }
-
-    
 </script>
